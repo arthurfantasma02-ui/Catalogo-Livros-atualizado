@@ -36,7 +36,7 @@ function BookItem({ book, onDelete }: BookItemProps) {
         </span>
       </span>
       <button
-        onClick={() => onDelete(book._id!)}
+        onClick={() => onDelete(book._id!)} // onDelete agora recebe o ID diretamente
         style={{
           marginTop: "8px",
           background: "#ff5555",

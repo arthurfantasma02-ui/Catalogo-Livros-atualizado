@@ -8,17 +8,16 @@ function BookList() {
   const [books, setBooks] = useState<Book[]>([]);
 
 
-async function deleteBook(id: string) {
-  try {
-    await fetch(`${API_URL}/${id}`, {
-      method: "DELETE",
-    });
-
-    setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
-  } catch (error) {
-    console.error("Erro ao remover livro:", error);
+  async function deleteBook(id: string) {
+    try {
+      await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+      });
+      await loadBooks(); // Recarrega a lista para refletir a remoção
+    } catch (error) {
+      console.error("Erro ao remover livro:", error);
+    }
   }
-}
 
   async function loadBooks() {
     try {
@@ -44,7 +43,7 @@ async function deleteBook(id: string) {
 
     <div className="book-grid">
         {books.map((book) => (
-          <BookItem key={book._id} book={book} onDelete={() => deleteBook(book._id!)} />
+          <BookItem key={book._id} book={book} onDelete={deleteBook} />
         ))}
       </div>
     </div>

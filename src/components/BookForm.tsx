@@ -50,7 +50,7 @@ function BookForm({ onAdd }: BookFormProps) {
       />
       <br />
 
-      <select value={status} onChange={(e) => setStatus(e.target.value as any)}>
+      <select value={status} onChange={(e) => setStatus(e.target.value as "Lido" | "Não lido")}>
         <option value="Lido">Lido</option>
         <option value="Não lido">Não lido</option>
       </select>
